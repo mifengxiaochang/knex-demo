@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>模拟控制器</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.0/socket.io.slim.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <style>
+        button {
+            padding: 4px 15px;
+            margin: 5px;
+        }
+        .jb {
+            height: 10rem;
+            width: 200px;
+            background: linear-gradient(90deg, transparent 0,transparent 1rem, #4dafe2 1rem ,#4dafe2 2rem) repeat-x;
+            background-size: 2rem 2rem;
+            background-position: 0px;
+        }
+    </style>
+</head>
+
+<body>
+<div>
+    <div class="jb"></div>
+</div>
+
+</body>
+<script>
+  const socket = io('http://127.0.0.1:7071');
+  socket.on('message', function (d) {
+    console.log('message from server======>', d);
+  });
+  axios({
+    method: 'put',
+    url: 'http://127.0.0.1:7071/control/update',
+    data: {
+      firstName: 'Fred',
+      lastName: 'Flintstone',
+    },
+  });
+</script>
+</html>
